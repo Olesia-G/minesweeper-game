@@ -44,10 +44,10 @@ for(let i = 0; i < BOMBS_COUNT; i++) {
   let rowRand = Math.floor(Math.random() * 10);
   let cellRand = Math.floor(Math.random() * 10);
 
-  console.log(rowRand + ", " + cellRand); // check
+  // console.log(rowRand + ", " + cellRand); // check
 
       cells[rowRand][cellRand].isBomb = true;
-      console.log(i); // check
+      // console.log(i); // check
 }
 
 // Once the game has been initialized, we "render" it.
@@ -86,7 +86,23 @@ function countAdjacentBombs(row, col) {
   // TODO: Task 4 - Adjacent bombs are bombs in cells touching our cell (also diagonally). Implement this function
   //                so that it returns the count of adjacent cells with bombs in them. 
   //
-  return 1;
+
+  let count = 0;
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            let newRow = row + i;
+            let newCol = col + j;
+            
+            if (newRow >= 0 && newRow < ROWS_COUNT && newCol >= 0 && newCol < COLS_COUNT) {
+              
+                if (cells[newRow][newCol].isBomb) {
+                  console.log(newRow, newCol);
+                    count++;
+                }
+            }
+        }
+    }
+    return count;
 }
 
 function getBombsCount() {
