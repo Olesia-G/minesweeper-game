@@ -62,17 +62,35 @@ function discoverCell(row, col) {
   //
   // TODO: Task 5 - Reveal cells when clicked.
   //
+  // console.log(countAdjacentBombs(row, col));
   if(!cells[row][col].discovered) {
-    cells[row][col].discovered = true; 
-  } 
-// else
-// if (cells[row][col].discovered) {
-//   cells[row][col].discovered = false;}
+    cells[row][col].discovered = true;  
+
+    // else if (cells[row][col].discovered) {
+    //   cells[row][col].discovered = false;}
+
+    if(countAdjacentBombs(row, col) === 0){
+      for(let i = -1; i <= 1; i++) {
+        for(let j = -1; i <= 1; i++) {
+          let newRow = row + i;
+          let newCol = col + j;
+
+          if (newRow >= 0 && newRow < ROWS_COUNT && newCol >= 0 && newCol < COLS_COUNT) {
+            discoverCell(newRow, newCol);
+          } 
+        }
+      }
+    }
+  }
+
 
 
   //
   // TODO: Task 6 - Discover neighbor cells recursively, as long as there are no adjacent bombs to the current cell.
   //
+
+  
+
 
   //
   // TODO: Task 8 - Implement defeat. If the player "discovers" a bomb (clicks on it without holding shift), set the variable defeat to true.
