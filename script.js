@@ -1,10 +1,11 @@
 
 // Set this constant to true to debug the placement of bombs without
 // having to click on all cells to reveal them.
-const CHEAT_REVEAL_ALL = false;
+const CHEAT_REVEAL_ALL = true;
 
 const ROWS_COUNT = 10;
 const COLS_COUNT = 10;
+const BOMBS_COUNT = 10;
 
 var defeat = false;
 var victory = false;
@@ -37,6 +38,17 @@ for (var row = 0; row < ROWS_COUNT; row++) {
 //                other constants.
 //
 
+
+// Place bombs randomly
+for(let i = 0; i < BOMBS_COUNT; i++) {
+  let rowRand = Math.floor(Math.random() * 10);
+  let cellRand = Math.floor(Math.random() * 10);
+
+  console.log(rowRand + ", " + cellRand); // check
+
+      cells[rowRand][cellRand].isBomb = true;
+      console.log(i); // check
+}
 
 // Once the game has been initialized, we "render" it.
 render();
